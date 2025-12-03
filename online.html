@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LearnHub - Online Courses</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:Arial,Helvetica,sans-serif;background:#f3f4f6;color:#111827;}
+    header{background:#111827;color:#fff;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+    .logo{font-weight:bold;font-size:18px;}
+    nav a{color:#e5e7eb;text-decoration:none;margin-left:15px;font-size:14px;}
+    nav a:hover{color:#38bdf8;}
+    .hero{background:#0f172a;color:#e5e7eb;padding:16px 20px;}
+    .hero h1{font-size:24px;margin-bottom:4px;}
+    .hero p{font-size:13px;max-width:600px;}
+    .hero-buttons{margin-top:8px;}
+    .hero-buttons button{padding:8px 14px;border:none;cursor:pointer;border-radius:4px;font-size:13px;margin-right:8px;}
+    .btn-primary{background:#38bdf8;color:#0f172a;}
+    .btn-outline{background:transparent;color:#38bdf8;border:1px solid #38bdf8;}
+    main{max-width:1100px;margin:12px auto 0;padding:0 20px 20px;}
+    section{margin-bottom:18px;}
+    section h2{font-size:18px;margin-bottom:6px;border-left:4px solid #38bdf8;padding-left:6px;}
+    section p{font-size:13px;margin-bottom:6px;color:#4b5563;}
+
+    .course-filter{display:flex;gap:8px;margin:8px 0 10px;font-size:13px;flex-wrap:wrap;}
+    .course-filter input,.course-filter select{padding:6px 8px;border-radius:4px;border:1px solid #d1d5db;font-size:13px;}
+    .course-filter input{flex:1;min-width:180px;}
+    .course-grid{display:flex;flex-wrap:wrap;gap:12px;}
+    .course-card{background:#fff;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.06);padding:8px;font-size:13px;flex:1 1 240px;min-width:240px;}
+    .course-card img{width:100%;height:120px;border-radius:4px;object-fit:cover;margin-bottom:6px;}
+    .course-title{font-size:15px;font-weight:bold;margin-bottom:3px;}
+    .course-meta{font-size:11px;color:#6b7280;margin-bottom:4px;}
+    .course-price{font-size:13px;font-weight:bold;color:#16a34a;margin-bottom:4px;}
+    .course-card button{padding:6px 10px;border-radius:4px;border:none;background:#38bdf8;color:#0f172a;cursor:pointer;font-size:12px;width:100%;}
+
+    .two-col{display:flex;flex-wrap:wrap;gap:15px;margin-top:8px;}
+    .card{background:#fff;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.06);padding:10px;font-size:13px;flex:1 1 260px;min-width:260px;}
+    .card h3{font-size:16px;margin-bottom:6px;}
+
+    .form-group{margin-bottom:8px;font-size:13px;}
+    .form-group label{display:block;margin-bottom:3px;}
+    .form-group input,.form-group select{width:100%;padding:6px;border-radius:4px;border:1px solid #d1d5db;font-size:13px;}
+
+    .testimonial-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+    .testimonial{background:#fff;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.06);padding:8px;font-size:13px;flex:1 1 260px;min-width:260px;}
+    .testimonial strong{display:block;margin-top:4px;}
+    .rating{color:#fbbf24;font-size:12px;margin-top:2px;}
+
+    footer{background:#111827;color:#9ca3af;text-align:center;padding:10px;font-size:12px;margin-top:10px;}
+
+    @media(max-width:700px){
+      header{justify-content:center;gap:8px;}
+      nav{width:100%;text-align:center;margin-top:4px;}
+      nav a{margin:0 8px;}
+      main{padding-inline:10px;}
+      .hero{padding-inline:10px;}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">LearnHub</div>
+  <nav>
+    <a href="#courses">Courses</a>
+    <a href="#enroll">Enroll</a>
+    <a href="#testimonials">Testimonials</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Upgrade your skills with short, practical courses.</h1>
+  <p>LearnHub ek online learning platform hai jahan coding, design aur career skills ke bite‑sized courses available hain, lifetime access ke saath. [web:210][web:208]</p>
+  <div class="hero-buttons">
+    <button class="btn-primary" onclick="scrollToId('courses')">Browse Courses</button>
+    <button class="btn-outline" onclick="scrollToId('enroll')">Enroll Now</button>
+  </div>
+</div>
+
+<main>
+  <!-- Courses -->
+  <section id="courses">
+    <h2>Course Listings</h2>
+    <p>Course cards me title, duration, level, price aur short description show hota hai, jisse learners easily choose kar sakte hain. [web:205][web:211]</p>
+
+    <div class="course-filter">
+      <input id="searchCourse" placeholder="Search course by name or tag">
+      <select id="levelFilter">
+        <option value="">All Levels</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="Development">Development</option>
+        <option value="Design">Design</option>
+        <option value="Business">Business</option>
+      </select>
+    </div>
+
+    <div class="course-grid" id="courseGrid"></div>
+  </section>
+
+  <!-- Enroll + Testimonials -->
+  <section id="enroll">
+    <h2>Enrollment & Testimonials</h2>
+    <p>Simple enrollment form se learner apna course select kar sakta hai; testimonials section trust build karne ke liye use hota hai. [web:201][web:209]</p>
+
+    <div class="two-col">
+      <div class="card">
+        <h3>Quick Enrollment (Demo)</h3>
+        <p style="font-size:12px;color:#4b5563;">Form submit hone par sirf alert aayega; real project me isko backend/DB se connect kiya jata hai.</p>
+        <form id="enrollForm">
+          <div class="form-group">
+            <label for="studentName">Full Name</label>
+            <input id="studentName" required>
+          </div>
+          <div class="form-group">
+            <label for="studentEmail">Email</label>
+            <input id="studentEmail" type="email" required>
+          </div>
+          <div class="form-group">
+            <label for="courseSelect">Select Course</label>
+            <select id="courseSelect" required>
+              <option value="">Choose a course</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modeSelect">Mode</label>
+            <select id="modeSelect">
+              <option value="Self-paced">Self‑paced</option>
+              <option value="Live cohort">Live cohort</option>
+            </select>
+          </div>
+          <button class="btn-primary" type="submit">Enroll (Demo)</button>
+        </form>
+      </div>
+
+      <div class="card" id="testimonials">
+        <h3>Student Testimonials</h3>
+        <div class="testimonial-list">
+          <div class="testimonial">
+            <p>“Frontend course ne basics ke saath project bana kar confidence build kar diya.”</p>
+            <div class="rating">★★★★★</div>
+            <strong>Riya Sharma</strong>
+            <span style="font-size:11px;color:#6b7280;">Web Development Track</span>
+          </div>
+          <div class="testimonial">
+            <p>“Recorded + live doubt sessions ka mix perfect tha, part‑time job ke sath manage ho gaya.”</p>
+            <div class="rating">★★★★☆</div>
+            <strong>Arjun Verma</strong>
+            <span style="font-size:11px;color:#6b7280;">UI/UX Design Essentials</span>
+          </div>
+          <div class="testimonial">
+            <p>“Assignments realistic the, jisse resume aur LinkedIn projects strong ho gaye.”</p>
+            <div class="rating">★★★★★</div>
+            <strong>Fatima Khan</strong>
+            <span style="font-size:11px;color:#6b7280;">Business Analytics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© 2025 LearnHub Online Learning • Email: support@learnhub.com</footer>
+
+<script>
+  const courses=[
+    {id:1,title:"HTML, CSS & JavaScript Basics",category:"Development",level:"Beginner",duration:"6 weeks",price:"₹1,999",tags:["html","css","js","frontend"],img:"https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600",desc:"Web dev ke fundamentals with small projects."},
+    {id:2,title:"Responsive Web Design",category:"Development",level:"Intermediate",duration:"4 weeks",price:"₹2,499",tags:["css","flexbox","grid"],img:"https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=600",desc:"Layouts jo mobile, tablet aur desktop sab par kaam karein."},
+    {id:3,title:"UI/UX Design Foundations",category:"Design",level:"Beginner",duration:"5 weeks",price:"₹2,999",tags:["ui","ux","figma"],img:"https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=600",desc:"Wireframes se hi‑fi prototypes tak full flow."},
+    {id:4,title:"Logo & Brand Design",category:"Design",level:"Intermediate",duration:"3 weeks",price:"₹1,799",tags:["branding","illustrator"],img:"https://images.pexels.com/photos/2706379/pexels-photo-2706379.jpeg?auto=compress&cs=tinysrgb&w=600",desc:"Brand identity aur logo design basics."},
+    {id:5,title:"Excel to Data Analysis",category:"Business",level:"Beginner",duration:"4 weeks",price:"₹1,499",tags:["excel","analytics"],img:"https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=600",desc:"Spreadsheets se charts aur basic dashboards."},
+    {id:6,title:"Power BI Dashboarding",category:"Business",level:"Advanced",duration:"5 weeks",price:"₹3,499",tags:["power bi","dashboards"],img:"https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=600",desc:"Interactive dashboards for business reporting."}
+  ];
+
+  const courseGrid=document.getElementById("courseGrid");
+  const searchCourse=document.getElementById("searchCourse");
+  const levelFilter=document.getElementById("levelFilter");
+  const categoryFilter=document.getElementById("categoryFilter");
+  const courseSelect=document.getElementById("courseSelect");
+  const enrollForm=document.getElementById("enrollForm");
+
+  function renderCourses(list){
+    courseGrid.innerHTML="";
+    if(!list.length){courseGrid.innerHTML="<p style='font-size:13px;'>No courses found.</p>";return;}
+    list.forEach(c=>{
+      const card=document.createElement("div");
+      card.className="course-card";
+      card.innerHTML=`
+        <img src="${c.img}" alt="${c.title}">
+        <div class="course-title">${c.title}</div>
+        <div class="course-meta">${c.category} • ${c.level} • ${c.duration}</div>
+        <div class="course-price">${c.price}</div>
+        <p>${c.desc}</p>
+        <button type="button" onclick="prefillCourse('${c.title.replace(/'/g,'&#39;')}')">Enroll in this Course</button>`;
+      courseGrid.appendChild(card);
+    });
+  }
+
+  function applyCourseFilter(){
+    const text=searchCourse.value.trim().toLowerCase();
+    const lvl=levelFilter.value;
+    const cat=categoryFilter.value;
+    const filtered=courses.filter(c=>{
+      if(text){
+        const h=(c.title+" "+c.tags.join(" ")).toLowerCase();
+        if(!h.includes(text))return false;
+      }
+      if(lvl && c.level!==lvl)return false;
+      if(cat && c.category!==cat)return false;
+      return true;
+    });
+    renderCourses(filtered);
+  }
+
+  function prefillCourse(title){
+    courseSelect.value=title;
+    scrollToId("enroll");
+  }
+
+  function scrollToId(id){
+    const el=document.getElementById(id);
+    if(el)el.scrollIntoView({behavior:"smooth"});
+  }
+
+  searchCourse.addEventListener("input",applyCourseFilter);
+  levelFilter.addEventListener("change",applyCourseFilter);
+  categoryFilter.addEventListener("change",applyCourseFilter);
+
+  courses.forEach(c=>{
+    const opt=document.createElement("option");
+    opt.value=c.title;
+    opt.textContent=c.title;
+    courseSelect.appendChild(opt);
+  });
+
+  enrollForm.addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=document.getElementById("studentName").value.trim();
+    const email=document.getElementById("studentEmail").value.trim();
+    const course=courseSelect.value;
+    if(!name||!email||!course){alert("Please fill all required fields.");return;}
+    alert("Thank you, "+name+"! Your enrollment request for \""+course+"\" has been received. (Demo only)");
+    enrollForm.reset();
+  });
+
+  renderCourses(courses);
+</script>
+</body>
+</html>
